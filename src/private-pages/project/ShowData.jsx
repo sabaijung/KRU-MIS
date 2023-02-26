@@ -43,33 +43,23 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
         >
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
+              <th>ลำดับ</th>
+              <th>ชื่อโครงการ</th>
+              <th>ปี พ.ศ.</th>
+              <th>จัดการ</th>
             </tr>
           </thead>
-          <tfoot>
-            <tr>
-              <th>Name</th>
-              <th>Position</th>
-              <th>Office</th>
-              <th>Age</th>
-              <th>Start date</th>
-              <th>Salary</th>
-            </tr>
-          </tfoot>
           <tbody>
-            <tr>
-              <td>Tiger Nixon</td>
-              <td>System Architect</td>
-              <td>Edinburgh</td>
-              <td>61</td>
-              <td>2011/04/25</td>
-              <td>$320,800</td>
-            </tr>
+            {data.map((item, index) => (
+              <tr>
+                <td>
+                  {(pagin.currentpage - 1) * pagin.pagesize + (index + 1)}
+                </td>
+                <td>{item.projectName}</td>
+                <td></td>
+                <td></td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
