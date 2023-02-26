@@ -76,6 +76,24 @@ const ShowProject = () => {
                           touched={touched}
                         />
                       </div>
+
+                      <div
+                        className="form-group col-md-2 text-center"
+                        style={{ marginTop: "29px" }}
+                      >
+                        <button
+                          type="submit"
+                          className="btn btn-primary btn-md"
+                        >
+                          ค้นหา
+                        </button>{" "}
+                        <button
+                          type="reset"
+                          className="btn btn-secondary btn-md"
+                        >
+                          ล้างข้อมูล
+                        </button>
+                      </div>
                     </div>
                   </Form>
                 )}
