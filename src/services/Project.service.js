@@ -1,6 +1,6 @@
 import projectData from "../data/project.json";
 
-import { pagination } from "../helper/pagination";
+import { pagination } from "../helpers/Pagination";
 
 export function getProject(search = "", pagesize = 10, currentpage = 1) {
   let project = projectData;
