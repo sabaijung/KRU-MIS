@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Formik, Form } from "formik";
 import Select from "react-select";
 
@@ -21,6 +21,10 @@ const ShowProject = () => {
     currentpage: 1,
     totalpage: 1,
   });
+
+  useEffect(() => {
+    showData("", 10, 1);
+  }, []);
 
   function showData(search, pagesize, currentpage) {
     let res = getProject(search, pagesize, currentpage);
@@ -45,6 +49,7 @@ const ShowProject = () => {
             <div className="row">
               <Formik
                 initialValues={{
+                  projectName: "",
                   projectStatus: "",
                 }}
               >
@@ -113,13 +118,22 @@ const ShowProject = () => {
                         </button>
                       </div>
                     </div>
+
+                    <div className="row">
+                      <ShowData
+                        data={data}
+                        pagin={pagin}
+                        changePage={(page) => {
+                          showData(values.projectName, pagin.pagesize, page);
+                        }}
+                        changePageSize={(pagesize) => {
+                          showData(values.projectName, pagesize, 1);
+                        }}
+                      />
+                    </div>
                   </Form>
                 )}
               </Formik>
-            </div>
-
-            <div className="row">
-              <ShowData />
             </div>
           </div>
         </div>
