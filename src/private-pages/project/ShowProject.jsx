@@ -22,6 +22,13 @@ const ShowProject = () => {
     totalpage: 1,
   });
 
+  function showData(search, pagesize, currentpage) {
+    let res = getProject(search, pagesize, currentpage);
+    console.log(res);
+    setData(res.data);
+    setPagin(res.pagin);
+  }
+
   return (
     <Fragment>
       <div className="row">
