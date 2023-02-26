@@ -6,12 +6,21 @@ import { DatePickerTH } from "../../components/TextField";
 
 import systemSetting from "../../data/system-setting.json";
 
+import { getProject } from "../../services/Project.service";
+
 import ShowData from "./ShowData";
 
 const ShowProject = () => {
   const projectStatus = systemSetting.projectStatus;
-
   const [selectedOption, setSelectedOption] = useState(null);
+
+  const [data, setData] = useState([]);
+  const [pagin, setPagin] = useState({
+    totalrow: 0,
+    pagesize: 10,
+    currentpage: 1,
+    totalpage: 1,
+  });
 
   return (
     <Fragment>
