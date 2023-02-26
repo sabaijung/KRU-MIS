@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import Pagination from "react-js-pagination";
 
 function ShowData({ data, pagin, changePage, changePageSize }) {
-  console.log("data:", data);
+  //console.log("data:", data);
   return (
     <Fragment>
       <div className="mt-5">
@@ -52,7 +52,7 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
           </thead>
           <tbody>
             {data.map((item, index) => (
-              <tr>
+              <tr key={index}>
                 <td>
                   {(pagin.currentpage - 1) * pagin.pagesize + (index + 1)}
                 </td>
