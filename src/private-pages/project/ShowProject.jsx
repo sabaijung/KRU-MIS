@@ -26,9 +26,9 @@ const ShowProject = () => {
     showData("", 10, 1);
   }, []);
 
-  function showData(search, pagesize, currentpage) {
-    let res = getProject(search, pagesize, currentpage);
-    console.log(res);
+  function showData(projectName, pagesize, currentpage) {
+    let res = getProject(projectName, pagesize, currentpage);
+    //console.log(res);
     setData(res.data);
     setPagin(res.pagin);
   }
@@ -52,6 +52,10 @@ const ShowProject = () => {
                   projectName: "",
                   projectStatus: "",
                 }}
+                onSubmit={(v) => {
+                  console.log("dt:", v.projectName);
+                  showData(v.projectName);
+                }}
               >
                 {({ values, setFieldValue, errors, touched }) => (
                   <Form>
@@ -62,6 +66,9 @@ const ShowProject = () => {
                           className="form-control"
                           type="text"
                           name="projectName"
+                          onChange={(e) => {
+                            setFieldValue("projectName", e.target.value);
+                          }}
                         />
                       </div>
 
@@ -113,6 +120,9 @@ const ShowProject = () => {
                         <button
                           type="reset"
                           className="btn btn-secondary btn-md"
+                          onClick={() => {
+                            showData("", 10, 1);
+                          }}
                         >
                           ล้างข้อมูล
                         </button>
