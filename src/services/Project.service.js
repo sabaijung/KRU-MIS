@@ -2,11 +2,15 @@ import projectData from "../data/project.json";
 
 import { pagination } from "../helpers/Pagination";
 
-export function getProject(search = "", pagesize = 10, currentpage = 1) {
+export function getProject(
+  prmProjectName = "",
+  pagesize = 10,
+  currentpage = 1
+) {
   let project = projectData;
 
-  if (search) {
-    project = project.filter((a) => a.name.includes(search));
+  if (prmProjectName) {
+    project = project.filter((a) => a.projectName.includes(prmProjectName));
   }
 
   return pagination(pagesize, currentpage, project);
