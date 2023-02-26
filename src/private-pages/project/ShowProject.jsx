@@ -6,6 +6,8 @@ import { DatePickerTH } from "../../components/TextField";
 
 import systemSetting from "../../data/system-setting.json";
 
+import ShowData from "./ShowData";
+
 const ShowProject = () => {
   const projectStatus = systemSetting.projectStatus;
 
@@ -98,6 +100,10 @@ const ShowProject = () => {
                   </Form>
                 )}
               </Formik>
+            </div>
+
+            <div className="row">
+              <ShowData />
             </div>
           </div>
         </div>
