@@ -58,7 +58,14 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
                 </td>
                 <td>{item.projectName}</td>
                 <td></td>
-                <td></td>
+                <td>
+                  <a href="#" class="btn btn-warning btn-circle btn-sm">
+                    <i class="fas fa-pen"></i>
+                  </a>{" "}
+                  <a href="#" class="btn btn-danger btn-circle btn-sm">
+                    <i class="fas fa-trash"></i>
+                  </a>
+                </td>
               </tr>
             ))}
           </tbody>
