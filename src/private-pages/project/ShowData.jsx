@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import Pagination from "react-js-pagination";
 
 function ShowData({ data, pagin, changePage, changePageSize }) {
+  console.log("data:", data);
   return (
     <Fragment>
       <div className="mt-5">
@@ -62,6 +63,21 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
             ))}
           </tbody>
         </table>
+
+        <div className="d-flex justify-content-between">
+          <div>จำนวน {pagin.totalrow} รายการ</div>
+          <div>
+            <Pagination
+              activePage={pagin.currentpage}
+              itemsCountPerPage={pagin.pagesize}
+              totalItemsCount={pagin.totalrow}
+              pageRangeDisplayed={pagin.totalpage}
+              onChange={(page) => {
+                changePage(page);
+              }}
+            />
+          </div>
+        </div>
       </div>
     </Fragment>
   );
