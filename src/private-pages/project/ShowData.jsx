@@ -9,7 +9,7 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
         <div className="d-flex justify-content-between">
           <div>
             <select
-              value="0"
+              value={pagin.pagesize}
               className="form-control form-select"
               onChange={(e) => {
                 changePageSize(parseInt(e.target.value));
