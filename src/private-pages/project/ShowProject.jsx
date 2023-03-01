@@ -42,7 +42,7 @@ const ShowProject = () => {
       true,
       true
     ).then(async (result) => {
-      console.log("55:");
+      console.log("55:", code);
     });
   };
 
