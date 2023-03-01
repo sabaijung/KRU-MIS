@@ -3,6 +3,7 @@ import { Formik, Form } from "formik";
 import Select from "react-select";
 
 import { DatePickerTH } from "../../components/TextField";
+import { ConfirmDialog } from "../../components/AlertDialog";
 
 import systemSetting from "../../data/system-setting.json";
 
@@ -28,10 +29,22 @@ const ShowProject = () => {
 
   function showData(projectName, pagesize, currentpage) {
     let res = getProject(projectName, pagesize, currentpage);
-    //console.log(res);
     setData(res.data);
     setPagin(res.pagin);
   }
+
+  const Delete = (code) => {
+    ConfirmDialog(
+      "question",
+      "คุณต้องการลบข้อมูลใช่หรือไม่?",
+      "",
+      0,
+      true,
+      true
+    ).then(async (result) => {
+      console.log("55:");
+    });
+  };
 
   return (
     <Fragment>
@@ -53,7 +66,6 @@ const ShowProject = () => {
                   projectStatus: "",
                 }}
                 onSubmit={(v) => {
-                  console.log("dt:", v.projectName);
                   showData(v.projectName);
                 }}
               >
@@ -139,6 +151,7 @@ const ShowProject = () => {
                         changePageSize={(pagesize) => {
                           showData(values.projectName, pagesize, 1);
                         }}
+                        deleteData={(id) => Delete(id)}
                       />
                     </div>
                   </Form>
