@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
 import { NavLink } from "react-router-dom";
-import Select from "react-select";
+//import Select from "react-select";
 
 function ShowData({ data, pagin, changePage, changePageSize, deleteData }) {
   return (
