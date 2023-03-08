@@ -27,11 +27,24 @@ const ShowProject = () => {
     showData("", 10, 1);
   }, []);
 
-  function showData(projectName, pagesize, currentpage) {
-    let res = getProject(projectName, pagesize, currentpage);
-    setData(res.data);
-    setPagin(res.pagin);
-  }
+  const showData = async (pageSize, currentPage, projectName) => {
+    let res = await getProject(pageSize, currentPage, projectName);
+    if (res) {
+      if (res.statusCode === 200) {
+        setData(res.data);
+        setPagin(res.pagin);
+      }
+    }
+  };
+
+  // function showData(projectName, pagesize, currentpage) {
+  //   let res = getProject(projectName, pagesize, currentpage);
+
+  //   setData(res.data);
+  //   setPagin(res.pagin);
+
+  //   console.log("data:na", data);
+  // }
 
   const Delete = (code) => {
     ConfirmDialog(
@@ -146,10 +159,10 @@ const ShowProject = () => {
                         data={data}
                         pagin={pagin}
                         changePage={(page) => {
-                          showData(values.projectName, pagin.pagesize, page);
+                          showData(10, page, values.projectName);
                         }}
                         changePageSize={(pagesize) => {
-                          showData(values.projectName, pagesize, 1);
+                          showData(pagesize, 1, values.projectName);
                         }}
                         deleteData={(id) => Delete(id)}
                       />
