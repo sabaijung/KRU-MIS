@@ -7,7 +7,7 @@ import { ConfirmDialog } from "../../components/AlertDialog";
 
 import systemSetting from "../../data/system-setting.json";
 
-import { getProject } from "../../services/Project.service";
+import { getProject, deleteProject } from "../../services/Project.service";
 
 import ShowData from "./ShowData";
 
@@ -24,7 +24,7 @@ const ShowProject = () => {
   });
 
   useEffect(() => {
-    showData("", 10, 1);
+    showData(10, 1, "");
   }, []);
 
   const showData = async (pageSize, currentPage, projectName) => {
@@ -55,7 +55,18 @@ const ShowProject = () => {
       true,
       true
     ).then(async (result) => {
-      console.log("55:", code);
+      if (result.isConfirmed) {
+        let res = await deleteProject(code);
+        // console.log("code:", code);
+        if (res) {
+          if (res.statusCode === 200) {
+            console.log("ลบข้อมูลเรียบร้อย");
+            showData(10, 1, "");
+          } else {
+            console.log("ไม่สามารถลบข้อมูลได้");
+          }
+        }
+      }
     });
   };
 
