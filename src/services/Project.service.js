@@ -1,17 +1,31 @@
-import projectData from "../data/project.json";
+// import projectData from "../data/project.json";
 
-import { pagination } from "../helpers/Pagination";
+import Instance from "../helpers/KRU.Axios";
 
-export function getProject(
-  prmProjectName = "",
-  pagesize = 10,
-  currentpage = 1
-) {
-  let project = projectData;
+//import { pagination } from "../helpers/Pagination";
 
-  if (prmProjectName) {
-    project = project.filter((a) => a.projectName.includes(prmProjectName));
+export const getProject = async (pageSize, currentPage, prmProjectName) => {
+  try {
+    const response = await Instance.get(
+      `Get/getProject?pagesize=${pageSize}&currentpage=${currentPage}&search=${prmProjectName}`
+    );
+
+    return await response.data;
+  } catch (error) {
+    console.log("error", error);
   }
+};
 
-  return pagination(pagesize, currentpage, project);
-}
+// export function getProject(
+//   prmProjectName = "",
+//   pagesize = 10,
+//   currentpage = 1
+// ) {
+//   let project = projectData;
+
+//   if (prmProjectName) {
+//     project = project.filter((a) => a.projectName.includes(prmProjectName));
+//   }
+
+//   return pagination(pagesize, currentpage, project);
+// }
