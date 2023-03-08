@@ -1,15 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Pagination from "react-js-pagination";
+import { NavLink } from "react-router-dom";
+import Select from "react-select";
 
-function ShowData({ data, pagin, changePage, changePageSize }) {
-  //console.log("data:", data);
+function ShowData({ data, pagin, changePage, changePageSize, deleteData }) {
   return (
     <Fragment>
       <div className="mt-5">
         <div className="d-flex justify-content-between">
           <div>
             <select
-              value={pagin.pagesize}
+              value={pagin}
               className="form-control form-select"
               onChange={(e) => {
                 changePageSize(parseInt(e.target.value));
@@ -22,15 +23,10 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
             </select>
           </div>
           <div>
-            <button
-              type="button"
-              className="btn btn-info"
-              onClick={() => {
-                console.log();
-              }}
-            >
-              เพิ่ม
-            </button>
+            <NavLink to="/project/create" className="btn btn-info btn-md">
+              <i className="fa fa-plus-circle pr-1"></i>
+              เพิ่มใหม่
+            </NavLink>
           </div>
         </div>
       </div>
@@ -56,15 +52,18 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
                 <td>
                   {(pagin.currentpage - 1) * pagin.pagesize + (index + 1)}
                 </td>
-                <td>{item.projectName}</td>
+                <td>{item.project_name}</td>
                 <td></td>
                 <td>
                   <a href="#" class="btn btn-warning btn-circle btn-sm">
                     <i class="fas fa-pen"></i>
                   </a>{" "}
-                  <a href="#" class="btn btn-danger btn-circle btn-sm">
+                  <button
+                    class="btn btn-danger btn-circle btn-sm"
+                    onClick={() => deleteData(item.id)}
+                  >
                     <i class="fas fa-trash"></i>
-                  </a>
+                  </button>
                 </td>
               </tr>
             ))}
@@ -77,7 +76,7 @@ function ShowData({ data, pagin, changePage, changePageSize }) {
             <Pagination
               activePage={pagin.currentpage}
               itemsCountPerPage={pagin.pagesize}
-              totalItemsCount={pagin.totalrow}
+              totalItemsCount={pagin.totalrows}
               pageRangeDisplayed={pagin.totalpage}
               onChange={(page) => {
                 changePage(page);
