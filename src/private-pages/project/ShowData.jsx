@@ -60,7 +60,7 @@ function ShowData({ data, pagin, changePage, changePageSize, deleteData }) {
                   </a>{" "}
                   <button
                     class="btn btn-danger btn-circle btn-sm"
-                    onClick={() => deleteData(item.id)}
+                    onClick={() => deleteData(item.code)}
                   >
                     <i class="fas fa-trash"></i>
                   </button>
@@ -71,7 +71,7 @@ function ShowData({ data, pagin, changePage, changePageSize, deleteData }) {
         </table>
 
         <div className="d-flex justify-content-between">
-          <div>จำนวน {pagin.totalrow} รายการ</div>
+          <div>จำนวน {pagin.totalrows} รายการ</div>
           <div>
             <Pagination
               activePage={pagin.currentpage}
